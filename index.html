@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +15,19 @@
 
     <main class="main">
         <div class="gridArea">
-            <div class="gridBlocks">
 
+        </div>
+        <div class="sizeWindow" style="display: none;">
+            <div class="sizePrompt">
+                Please specify a grid size. The value provided must be a numerical value between 1-99.
+            </div>
+            <div class="sizeInput">
+                <div class="output">Grid Size:&nbsp<output class="numOutput"></output>&nbspx&nbsp<output class="numOutput2"></output></div>
+                <input type="range" class="numInput" name="gridSize" size="2" min="1" max="99" value="25" step="1">
+            </div>
+            <div class="sizeChoices">
+                <button id="btns" class="confirmButton">Confirm</button>
+                <button id="btns" class="cancelButton">Cancel</button>
             </div>
         </div>
     </main>
@@ -33,8 +45,9 @@
             <button id="btns" class="resetButton">Reset</button>
         </div>
     </footer>
-
 </div>
+
+<script src="./index.js"></script>
 
 </body>
 </html>
