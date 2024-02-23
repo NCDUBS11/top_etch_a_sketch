@@ -107,6 +107,7 @@ function growGrid(value){
             const createRow = document.createElement("div");
             createRow.setAttribute("id", "block");
             createRow.setAttribute("class", "row");
+            createRow.setAttribute("draggable", false);
             createRow.style.backgroundColor = "#DEF2F1";
             activateBlock(createRow);
             createColumn.appendChild(createRow);}
@@ -115,72 +116,67 @@ function growGrid(value){
 
 function activateBlock(block){
 
-        block.addEventListener("mouseover", () => {
-            if (colorSelected != "" && mouseDown){
-                switch (colorSelected){
-                    case "black":
-                        block.style.backgroundColor = "black"; 
-                        break;
-                    case "erase":
-                        block.style.backgroundColor = "#DEF2F1"; 
-                        break;
-                }
-            }
-        })
-        block.addEventListener("mousedown", () => {
+        block.addEventListener("mousedown", function(){
             if (colorSelected != ""){
                 switch (colorSelected){
                     case "black":
                         block.style.backgroundColor = "black"; 
                         break;
+                    case "rgb":
+                        block.style.backgroundColor = randomColor(); 
+                        break;
+                    // case "fade":
+                    //     block.style.backgroundColor = fadeColor(); 
+                    //     break;  
                     case "erase":
-                        block.style.backgroundColor = "#DEF2F1"; 
+                        block.style.backgroundColor = "rgb(222, 242, 241)"; 
                         break;
                 }
             }
-        })
+        });
+        block.addEventListener("mouseover", function(){
+            if (mouseDown == 1){
+                switch (colorSelected){
+                    case "black":
+                        block.style.backgroundColor = "black"; 
+                        break;
+                    case "rgb":
+                        block.style.backgroundColor = randomColor(); 
+                        break;
+                    // case "fade":
+                    //     block.style.backgroundColor = fadeColor(); 
+                    //     break;  
+                    case "erase":
+                        block.style.backgroundColor = "rgb(222, 242, 241)"; 
+                        break;
+                }
+            }
+        });
 }
 
+function changeColor(color){
+    if (color != ""){
+        switch (color){
+            case "black":
+                block.style.backgroundColor = "black"; 
+                break;
+            case "rgb":
+                block.style.backgroundColor = randomColor(); 
+                break;
+            // case "fade":
+            //     block.style.backgroundColor = fadeColor(); 
+            //     break;  
+            case "erase":
+                block.style.backgroundColor = "rgb(222, 242, 241)"; 
+                break;
+        }
+    }
 
-// blockColumn.forEach(() => {
-//     block.addEventListener("mouseover", () => {
-//     if (colorSelected != ""){
-//         switch (colorSelected){
-//             case "black":
-//                 block.style.backgroundColor = "black"; 
-//                 break;
-//             case "eraser":
-//                 block.style.backgroundColor = "#DEF2F1"; 
-//                 break;
-//         }}})});
+}
 
-
-
-// blockRow.forEach(() => {
-//     blockRow.addEventListener("mouseover", () => {
-//     if (colorSelected != ""){
-//         switch (colorSelected){
-//             case "black":
-//                 block.style.backgroundColor = "black"; 
-//                 break;
-//             case "eraser":
-//                 block.style.backgroundColor = "#DEF2F1"; 
-//                 break;
-//         }}})});
-
-// function hoverPaint(colorSelected){
-//     addEventListener("mouseover", () => {
-//         if (typeof colorSelected !== ""){
-//             switch (colorSelected){
-//                 case "black":
-//                     block.style.backgroundColor = "black"; 
-//                     break;
-//                 case "eraser":
-//                     block.style.backgroundColor = "#DEF2F1"; 
-//                     break;
-//                 case "fade":
-//                     block.style.opacity = block.style.opacity + 0.1; 
-//                     break;
-    
-// }}})}
-
+function randomColor(){
+    let r = Math.floor(Math.random()*256);
+    let g = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random()*256);
+    return "rgb("+ r + "," + g + "," + b + ")";
+}

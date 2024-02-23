@@ -7,7 +7,7 @@
     font-family: 'Roboto Flex', sans-serif;
     font-size: 24px;
     font-weight: 400;
-    color:#DEF2F1;
+    color:rgb(222, 242, 241);
     background-color: #2B7A78;
 }
 
@@ -43,7 +43,7 @@ main{
 .gridArea{
     border: 4px solid #17252A;
     aspect-ratio: 1/1;
-    background-color: #DEF2F1;
+    background-color: rgb(222, 242, 241);
 
     display: flex;
     justify-content: space-evenly;
@@ -51,7 +51,7 @@ main{
 } 
 
 #block, .column{
-    background-color: #DEF2F1;
+    background-color: rgb(222, 242, 241);
     border: 0.01rem solid rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
