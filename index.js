@@ -108,7 +108,7 @@ function growGrid(value){
             createRow.setAttribute("id", "block");
             createRow.setAttribute("class", "row");
             createRow.setAttribute("draggable", false);
-            createRow.style.backgroundColor = "#DEF2F1";
+            createRow.style.backgroundColor = "rgb(222, 242, 241)";
             activateBlock(createRow);
             createColumn.appendChild(createRow);}
     }
@@ -125,9 +125,9 @@ function activateBlock(block){
                     case "rgb":
                         block.style.backgroundColor = randomColor(); 
                         break;
-                    // case "fade":
-                    //     block.style.backgroundColor = fadeColor(); 
-                    //     break;  
+                    case "fade":
+                        block.style.backgroundColor = fadeColor(block); 
+                        break;  
                     case "erase":
                         block.style.backgroundColor = "rgb(222, 242, 241)"; 
                         break;
@@ -143,9 +143,9 @@ function activateBlock(block){
                     case "rgb":
                         block.style.backgroundColor = randomColor(); 
                         break;
-                    // case "fade":
-                    //     block.style.backgroundColor = fadeColor(); 
-                    //     break;  
+                    case "fade":
+                        block.style.backgroundColor = fadeColor(block); 
+                        break;  
                     case "erase":
                         block.style.backgroundColor = "rgb(222, 242, 241)"; 
                         break;
@@ -163,9 +163,9 @@ function changeColor(color){
             case "rgb":
                 block.style.backgroundColor = randomColor(); 
                 break;
-            // case "fade":
-            //     block.style.backgroundColor = fadeColor(); 
-            //     break;  
+            case "fade":
+                block.style.backgroundColor = fadeColor(); 
+                break;  
             case "erase":
                 block.style.backgroundColor = "rgb(222, 242, 241)"; 
                 break;
@@ -179,4 +179,13 @@ function randomColor(){
     let g = Math.floor(Math.random()*256);
     let b = Math.floor(Math.random()*256);
     return "rgb("+ r + "," + g + "," + b + ")";
+}
+function fadeColor(block){
+    let exRGB = window.getComputedStyle(block).backgroundColor;
+    let tempValues = exRGB.slice(4,17).split(",");
+    for (let i = 0; i<tempValues.length; i++) {
+        tempValues[i] -= tempValues[i]*0.1;
+    }
+    let outputColor = tempValues.map(value=>value.toString()).join(",");
+    return `rgb(${outputColor})`;
 }
